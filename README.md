@@ -32,7 +32,7 @@
     $ docker run --name teamplayer-dashboard --network teamplayer -p 8000:80 --link teamplayerdb:db -d phpmyadmin/phpmyadmin
     $ mvn spring-boot:run
 
-#### After the application starts up, run the script [team-player.sql]().
+#### After the application starts up, run the script [team-player.sql](https://github.com/yunusbagriyanik/team-player/blob/master/src/main/resources/database/team-player.sql).
 
 * Database Dashboard url: http://localhost:8000/
 
