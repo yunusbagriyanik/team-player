@@ -1,0 +1,67 @@
+type Type {
+    typeId: ID!,
+    name: String!,
+    code: String,
+    entityName: String
+}
+
+type Position {
+    positionId: ID!,
+    name: String!,
+    code: String,
+    teamType: Type
+}
+
+type Team {
+    teamId: ID!,
+    name: String!,
+    type: Type
+}
+
+type Player {
+    playerId: ID!,
+    name: String!,
+    surname: String,
+    team: Team,
+    position: Position
+}
+
+type ProcessResult {
+    status: String!,
+    statusCode: Int,
+    message: String
+}
+
+type GenericResult {
+    result: Player,
+    processResult: ProcessResult
+}
+
+input Lov {
+    id: ID!,
+    key: String,
+    value: String,
+    selected: Boolean
+}
+
+input TeamParameter {
+    teamType: String,
+    selected: Boolean,
+    teams: [Lov],
+    positions: [Lov]
+}
+
+input CreatePlayerRequest {
+    name: String,
+    surname: String,
+    teamParams: [TeamParameter]
+}
+
+type Query {
+    findAllPlayers(type: String): [Player]
+}
+
+type Mutation {
+    addPlayer(request: CreatePlayerRequest): GenericResult
+    removePlayer(playerId: Int): ProcessResult
+}
